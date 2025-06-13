@@ -1,0 +1,190 @@
+/*** responsiveness ***/
+/*
+    this .css is organized by alphabetizing properties and selectors (alphabetical convention).
+
+    I first ordered all the tags, then the classes and finally the ids. Furthermore, to avoid ambiguity, for each block of properties, from right to left this rule applies: in the ordering, tags take priority over classes and classes take priority over ids
+*/
+
+/* extra large devices (large laptops and desktops, 1201px and up) */
+@media only screen and (min-width: 1201px) { /**/ }
+
+/* large devices (laptops, desktops, tablets, from 992px to 1200px) */
+@media only screen and (max-width: 1200px) { /**/ }
+
+/* medium devices (landscape tablets, from 768px to 991px) */
+@media only screen and (max-width: 991px) { /**/ }
+
+/* small devices (portrait tablets and phones, 767px and down) */
+@media only screen and (max-width: 767px) {
+    /*** TAGS ***/
+    .footer-icon li a,
+    .footer-icon li button {
+        margin: 0 5px;
+    }
+
+    .heading h2 {
+        font-size: 20vw;
+    }
+
+    header {
+        background: var(--color-primary);
+        bottom: initial;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        margin: 0 0;
+        padding: 30px 10vw 30px 10vw; /* 30px 8vw 30px 8vw */
+        top: initial;
+        width: 100%;
+        z-index: 4;
+    }
+
+    .footer-icon li a img:hover {
+        filter: var(--color-social-icon);
+    }
+
+    .dark-theme img:hover {
+        filter: var(--color-dark-icon);
+    }
+
+    header ul li {
+        font-size: 2rem;
+        padding-bottom: 20px; /* 35px */
+    }
+
+    #whats-new .content p {
+        margin-top: 5px;
+    }
+
+    .copyright p {
+        font-size: 1.0rem;
+    }
+
+    pre {
+        overflow-x: auto;
+        padding: 10px 20px 10px 20px;
+    }
+
+    section {
+        border-left: none;
+        border-right: none;
+        font-size: 1.1rem;
+        margin-left: 0%;
+        margin-right: 0%;
+        /* padding: 100px 8vw 80px 8vw; */ /*  100px 10vw 100px 10vw */
+    }
+
+    /*** CLASSES ***/
+    h1.bigheader {
+        font-size: 27vw; /* 28vw */
+    }
+
+    .check-list {
+        padding-left: 0.5rem;
+    }
+
+    .content {
+        flex-direction: column;
+    }
+
+    header .current-page {
+        font-size: 3.5rem;
+        margin: 10px;
+    }
+
+    .menu {
+        background: var(--color-primary);
+        border-top: 5px solid rgba(0, 0, 0, 0.2);
+        display: block;
+        height: 100vh;
+        left: 0%;
+        padding: 100px 50px; /* 150px, 50px */
+        position: fixed;
+        text-align: center;
+        top: -200%;
+        transition: .6s;
+        width: 100%;
+    }
+
+    .menu.active {
+        top: 0%;
+    }
+
+    .smallheader {
+        font-size: 10vw;
+    }
+
+    .smallheader:nth-of-type(2) {
+        display: none;
+    }
+
+    .toggle {
+        background: url("../assets/icons/menu.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 30px;
+        filter: var(--color-menu-icon);
+        height: 40px;
+        transition: .6s;
+        width: 40px;
+        z-index: 2;
+    }
+
+    .toggle.active {
+        -moz-transform:rotate(270deg);
+        -ms-transform:rotate(270deg);
+        -o-transform:rotate(270deg);
+        -webkit-transform:rotate(270deg);
+        background: url("../assets/icons/menu.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 25px;
+        transform:rotate(270deg);
+        transition: .6s;
+    }
+
+    /*** IDS ***/
+    /*
+    #hero-description {
+        font-size: 5vw;
+    }
+    */
+
+    #hero-name {
+        font-size: 35vw;
+    }
+
+    #right-panel {
+        display: none;
+    }
+
+    section#about-intro,
+    section#contact-intro,
+    section#home,
+    section#post,
+    section#posts-2025,
+    section#tags-list {
+        padding-top: 150px; /* 120px */
+    }
+
+    section#posts-2025,
+    section#tags-list {
+        height: 100vh; /* temp class; to remove eventually */
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    /*** TAGS ***/
+    header ul li {
+        display: inline-block;
+        font-size: 1.5rem;
+        margin-right: 1rem;
+    }
+
+    /*** CLASSES ***/
+    /**/
+
+    /*** IDS ***/
+    section#posts-2025,
+    section#tags-list {
+        height: calc(100vh + 500px); /* height: calc(100vh + 300px) */ /* temp class; to remove eventually */
+    }
+}

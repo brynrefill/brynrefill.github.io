@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bryn Refill's Blog</title>
+
+    <link rel="icon" href="/assets/icons/palm.png">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/responsive.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <script type="text/javascript" src="/scripts/fadeinfadeout.js"></script>
+
+    <header>
+        <div class="toggle" onclick="toggleMenu();"></div>
+        <div class="menu-div">
+            <ul class="menu">
+                <li><a href="/" class="current-page keyword">Home</a></li>
+                <li><a href="/posts/">Posts</a></li>
+                <li><a href="/tags/">Tags</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="heading">
+            <h1 id="hero-name" class="bigheader">bryn<span class="smallheader"> </span>refill<span class="smallheader"> .com</span></h1>
+            <p id="hero-description">My personal <span class="keyword">notes</span> on <span class="keyword">cybersecurity</span> and <span class="keyword">computer engineering</span>.</p>
+        </div>
+    </section>
+
+    <section id="whats-new">
+        <div class="heading">
+            <h2>What's new</h2>
+        </div>
+        <div class="content">
+            <div class="latest-post">
+                <p><a href="/posts/helloworld/">Jun. 13, 2025 - Hello World!</a></p>
+                <p>Hi folks! I'm happy to begin this <span class="keyword">new chapter</span> with my very <span class="keyword">first post</span>. I've decided to start this <span class="keyword">blog</span> because I needed to talk about what...</p>
+            </div>
+        </div>
+    </section>
+
+    <aside id="right-panel">
+        <h5>Contents</h5>
+        <ul class="check-list">
+            <!-- <li><a href="#home">Home</a></li> -->
+            <li><a href="#whats-new">What's new</a></li>
+        </ul>
+        <h5>Recently used tags</h5>
+        <p><a href="/tags/talks/">[talks]</a></p>
+    </aside>
+
+    <footer class="copyright">
+        <ul class="footer-icon">
+            <li><a href="mailto:info@brynrefill.com" title="Email"><img src="/assets/icons/email.png" alt="Email icon"></a></li>
+            <li><a href="https://github.com/brynrefill" title="GitHub" target="_blank"><img src="/assets/icons/github.png" alt="GitHub icon"></a></li>
+            <li class="dark-theme"><button onclick="toggleTheme();" title="Switch theme"><img src="/assets/icons/palm.png" alt="Switch theme icon"></button></li>
+        </ul>
+        <p>&copy; 2025 <a href="https://www.brynrefill.com">Bryn Refill</a>. All rights reserved.</p>
+        <p><span class="warning">The blog is under maintenance and will be active soon!</span></p>
+        <p><span class="warning">In the meantime emails won't be received.</span></p>
+    </footer>
+
+    <script type="text/javascript" src="/scripts/main.js"></script>
+</body>
+</html>

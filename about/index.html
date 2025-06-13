@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Bryn Refill's Blog</title>
+
+    <link rel="icon" href="/assets/icons/palm.png">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/responsive.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <script type="text/javascript" src="/scripts/fadeinfadeout.js"></script>
+
+    <header>
+        <div class="toggle" onclick="toggleMenu();"></div>
+        <div class="menu-div">
+            <ul class="menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/posts/">Posts</a></li>
+                <li><a href="/tags/">Tags</a></li>
+                <li><a href="/about/" class="current-page keyword">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="about-intro">
+        <div class="heading">
+            <h1 class="bigheader">About me</h1>
+        </div>
+        <div class="content">
+            <p>I'm known as <span class="keyword">Bryn Refill</span> around the Internet. I graduated with a <span class="keyword">Bachelor's degree</span> in <span class="keyword">Computer and System Engineering</span> and I worked for an IT company, where I was involved in microservices-oriented <span class="keyword">software development</span>.</p>
+            <p>At the moment, I'm pursuing a <span class="keyword">Master's degree</span> in the same field with an emphasis on <span class="keyword">cybersecurity</span> and I'm focused on experimenting with side projects and solving <span class="keyword">CTF challenges</span> in my spare time.</p>
+            <p>My <span class="keyword">current goal</span> is to become a <span class="keyword">cybersecurity engineer</span> and advance my career in the industry.</p>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="heading">
+            <h2>Projects</h2>
+        </div>
+        <div class="content">
+            <p>I've a particular interest in <span class="keyword">software security</span>, <span class="keyword">reverse engineering</span>, <span class="keyword">digital forensics</span> and <span class="keyword">computer networking</span>.</p>
+            <p>You can find some of the projects I've created, or contributed to, on my <a href="https://github.com/brynrefill" target="_blank">GitHub</a> page. Furthermore, you can read my <span class="keyword">blog posts</span> by going to the <a href="/posts/">posts</a> section.</p>
+        </div>
+    </section>
+
+    <section id="extras">
+        <div class="heading">
+            <h2>Extras</h2>
+        </div>
+        <div class="content">
+            <p>This website was <span class="keyword">designed and developed by me</span> from scratch, originally with the aim of creating my personal <span class="keyword">portfolio</span>, but over time it evolved into something more.</p>
+        </div>
+    </section>
+
+    <aside id="right-panel">
+        <h5>Contents</h5>
+        <ul class="check-list">
+            <li><a href="#about-intro">Intro</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#extras">Extras</a></li>
+        </ul>
+        <h5>Recently used tags</h5>
+        <p><a href="/tags/talks/">[talks]</a></p>
+    </aside>
+
+    <footer class="copyright">
+        <ul class="footer-icon">
+            <li><a href="mailto:info@brynrefill.com" title="Email"><img src="/assets/icons/email.png" alt="Email icon"></a></li>
+            <li><a href="https://github.com/brynrefill" title="GitHub" target="_blank"><img src="/assets/icons/github.png" alt="GitHub icon"></a></li>
+            <li class="dark-theme"><button onclick="toggleTheme();" title="Switch theme"><img src="/assets/icons/palm.png" alt="Switch theme icon"></button></li>
+        </ul>
+        <p>&copy; 2025 <a href="https://www.brynrefill.com">Bryn Refill</a>. All rights reserved.</p>
+        <p><span class="warning">The blog is under maintenance and will be active soon!</span></p>
+        <p><span class="warning">In the meantime emails won't be received.</span></p>
+    </footer>
+
+    <script type="text/javascript" src="/scripts/main.js"></script>
+</body>
+</html>

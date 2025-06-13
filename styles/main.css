@@ -1,0 +1,418 @@
+/*** main style ***/
+/*
+    this .css is organized by alphabetizing properties and selectors (alphabetical convention).
+
+    I first ordered all the tags, then the classes and finally the ids. Furthermore, to avoid ambiguity, for each block of properties, from right to left this rule applies: in the ordering, tags take priority over classes and classes take priority over ids
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap');
+
+* {
+    /* reset/initialization */
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    overflow-x: initial;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+::-moz-selection {
+    background: var(--color-details);
+    color: var(--color-primary);
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-lettering);
+}
+
+::selection {
+    background: var(--color-details);
+    color: var(--color-primary);
+}
+
+/*
+    https://codepen.io/sosuke/pen/Pjoqqp
+    I used this fantstic tool to change the colors of the .png icons with css filters.
+    It approximates the desired color and seems to work very well
+*/
+:root {
+    /* default color palette */
+    --color-black: invert(15%) sepia(10%) saturate(244%) hue-rotate(314deg) brightness(101%) contrast(85%); /* #373434 */
+    --color-blue:  invert(24%) sepia(13%) saturate(1455%) hue-rotate(169deg) brightness(99%) contrast(88%); /* #34495e */
+
+    --color-details:   #34495e;
+    --color-footer:    #918d8d;
+    --color-lettering: #373434;
+    --color-primary:   #c4c1c1;
+    --color-secondary: #b1aeae;
+
+    --color-dark-icon:    var(--color-blue);
+    --color-dark-icon2:   var(--color-black);
+    --color-menu-icon:    var(--color-blue);
+    --color-social-icon:  var(--color-black);
+    --color-social-icon2: var(--color-blue);
+}
+
+/*** TAGS ***/
+a, a:active, a:link, a:visited {
+    color: var(--color-details);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--color-details);
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+.footer-icon li a {
+    display: grid;
+    height: 40px;
+    place-items: center;
+    width: 40px;
+}
+
+.copyright p a {
+    color: var(--color-lettering);
+}
+
+aside {
+    border-left: solid 5px var(--color-primary);
+    z-index: 1;
+}
+
+.footer-icon li button {
+    display: grid;
+    height: 40px;
+    place-items: center;
+    width: 40px;
+}
+
+.dark-theme button {
+    background-color: inherit;
+    border: none;
+}
+
+h1, h2, h3 {
+    color: var(--color-lettering);
+    font-weight: 450;
+}
+
+.heading h1,
+.heading h2 {
+    font-size: 50px;
+}
+
+.content h3 {
+    font-size: 30px;
+}
+
+#right-panel h5 {
+    color: var(--color-lettering);
+    margin-bottom: 5px;
+    margin-top: 7px;
+}
+
+header {
+    background-color: var(--color-secondary);
+    border-right: solid 5px var(--color-primary);
+    bottom: 0;
+    box-sizing: border-box;
+    display: flex;
+    font-size: 1.2rem;
+    justify-content: space-between;
+    padding: 180px 20px 180px 0px; /* 130px 20px 130px 0px */
+    position: fixed;
+    top: 0;
+    transition: 0.5s;
+    width: calc(18% + 5px);
+    z-index: 1;
+}
+
+hr {
+    border: 0;
+    border-top: 5px solid var(--color-secondary);
+    margin-bottom: 20px;
+}
+
+html {
+    background: var(--color-primary);
+}
+
+html[data-theme="dark"] {
+    /* dark color palette */
+    --color-black: invert(0%) sepia(62%) saturate(1352%) hue-rotate(71deg) brightness(102%) contrast(88%); /* #0f0f0f */
+    --color-pink:  invert(73%) sepia(74%) saturate(2334%) hue-rotate(214deg) brightness(102%) contrast(96%); /* #de97fa */
+
+    --color-details:   #de97fa;
+    --color-footer:    #4b4b4b;
+    --color-lettering: #080808; /* #0f0f0f */
+    --color-primary:   #616161;
+    --color-secondary: #747474;
+
+    --color-dark-icon:    var(--color-pink);
+    --color-dark-icon2:   var(--color-black);
+    --color-menu-icon:    var(--color-pink);
+    --color-social-icon:  var(--color-black);
+    --color-social-icon2: var(--color-pink);
+}
+
+.footer-icon li a img {
+    filter: var(--color-social-icon);
+    max-width: 24px;
+}
+
+.dark-theme img {
+    filter: var(--color-dark-icon);
+    max-width: 24px;
+}
+
+.footer-icon li a img:hover {
+    filter: var(--color-social-icon2);
+}
+
+.dark-theme img:hover {
+    filter: var(--color-dark-icon2)
+}
+
+header ul li {
+    margin: 7px 0 7px 0;
+}
+
+.check-list li {
+    color: var(--color-lettering);
+    list-style-type: none;
+    margin-bottom: 0.3rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.footer-icon li {
+    list-style: none;
+}
+
+.check-list li:before {
+    border-width: 0 0 0 0;
+    content: 'o';
+    display: block;
+    height: 11px;
+    left: 0;
+    position: absolute;
+    top: -2px;
+    transform-origin: bottom left;
+    width: 5px;
+}
+
+p {
+    color: var(--color-lettering);
+    font-weight: 400;
+    /* letter-spacing: 0.5px; */
+    text-align: justify;
+}
+
+.content p {
+    padding-bottom: 24px;
+}
+
+#whats-new .content p {
+    padding: 0px;
+}
+
+.copyright p {
+    padding: 0px;
+    text-align: center;
+}
+
+#right-panel p {
+    padding-left: 1rem;
+}
+
+pre {
+    background-color: var(--color-primary);
+    color: var(--color-lettering);
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    padding: 10px 0 10px 20px;
+    /* text-align: center; */
+}
+
+section {
+    font-size: 1.2rem;
+    margin-left: calc(18% + 5px);
+    margin-right: calc(18% + 5px);
+    padding: 80px 5.810vw 76px 5.810vw; /* 100px 23.810vw 100px 23.810vw */
+}
+
+ul {
+    list-style: none;
+}
+
+/*** CLASSES ***/
+h1.bigheader {
+    font-size: 8vw;
+    text-align: center;
+    text-decoration: initial;
+}
+
+.check-list { /* custom unordered list */
+    margin: 0;
+    padding-left: 1rem;
+    /* padding-top: 0.5rem; */
+}
+
+#whats-new .content {
+    display: flex; /* I'll need it when num of latest-post >= 2 */
+}
+
+.copyright {
+    background: var(--color-footer);
+    border-top: solid 5px var(--color-primary);
+    padding: 10px;
+    position: relative;
+    z-index: 0;
+}
+
+header .current-page {
+    color: var(--color-lettering);
+    font-size: 24px;
+    letter-spacing: 3px;
+    text-decoration: none;
+}
+
+.cursor {
+    background: white;
+    border-radius: 50%;
+    height: 1rem;
+    mix-blend-mode: difference;
+    pointer-events: none;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    transform-origin: 100% 100%;
+    transition: all 0.3s ease;
+    transition-property: background, transform;
+    width: 1rem;
+    z-index: 6;
+}
+
+.cursor-change {
+    background: black;
+    transform: scale(2);
+}
+.cursor-dark {
+    background: var(--color-details);
+    mix-blend-mode: initial;
+    opacity: 0.5;
+}
+
+.footer-icon {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.heading {
+    color: var(--color-lettering);
+    margin-bottom: 30px;
+}
+
+.innercursor {
+    background: var(--color-details);
+    border-radius: 50%;
+    display: none;
+    height: .5rem;
+    pointer-events: none;
+    position: absolute;
+    transform: translate(-50%, -50%) ;
+    transform-origin: 100% 100% ;
+    transition: all 0.2s ease;
+    width: .5rem;
+    z-index: 5;
+}
+
+.innercursor-change {
+    background: var(--color-details);
+    display: block;
+    height: 1rem;
+    opacity: 0.7;
+    transition-property: background, transform;
+    width: 1rem;
+    z-index: 7;
+}
+
+.innercursor-dark {
+    background: var(--color-details);
+    display: block;
+}
+
+.keyword {
+    font-weight: 500;
+}
+
+.latest-post {
+    background-color: var(--color-primary);
+    /* margin: 5px; */
+    padding: 10px;
+}
+
+.menu-div {
+    text-align: right;
+    transition: 0.5s;
+}
+
+.smallheader {
+    font-size: 3vw;
+}
+
+.warning {
+    color: red;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+/*** IDS ***/
+#hero-description {
+    text-align: center;
+}
+
+#right-panel {
+    background-color: var(--color-secondary);
+    bottom: 0;
+    box-sizing: border-box;
+    /* overflow-y: scroll; */
+    padding: 180px 0px 180px 20px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: calc(18% + 5px);
+}
+
+section#about-intro,
+section#contact-intro,
+section#home,
+section#post,
+section#posts-2025,
+section#tags-list {
+    background: var(--color-primary);
+    padding-top: 100px;
+}
+
+section#extras {
+    background: var(--color-primary);
+}
+
+section#pgp-key,
+section#projects,
+section#whats-new {
+    background: var(--color-secondary);
+}
+
+section#posts-2025,
+section#tags-list {
+    height: calc(100vh - 79px + 1px); /* temp class; to remove eventually */
+}
