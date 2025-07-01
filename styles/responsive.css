@@ -45,9 +45,18 @@
         filter: var(--color-dark-icon);
     }
 
+    header ul li:nth-child(4) div li {
+        padding: 10px 0px;
+    }
+
     header ul li {
         font-size: 2rem;
         padding-bottom: 20px; /* 35px */
+        /* padding-right: 0px; */
+    }
+
+    .submenu-options li {
+        background-color: var(--color-footer);
     }
 
     #whats-new .content p {
@@ -73,6 +82,12 @@
     }
 
     /*** CLASSES ***/
+    .arrow /* ,
+    .submenu:hover .arrow */ {
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
     h1.bigheader {
         font-size: 27vw; /* 28vw */
     }
@@ -114,6 +129,13 @@
 
     .smallheader:nth-of-type(2) {
         display: none;
+    }
+
+    .submenu-options {
+        /* background-color: var(--color-footer); */
+        display: block;
+        margin: 0 15%;
+        position: initial;
     }
 
     .toggle {

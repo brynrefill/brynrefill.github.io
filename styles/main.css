@@ -82,6 +82,11 @@ a:hover {
     color: var(--color-lettering);
 }
 
+header ul li.submenu > a:first-of-type {
+    color: var(--color-lettering);
+    pointer-events: none;
+}
+
 aside {
     border-left: solid 5px var(--color-primary);
     z-index: 1;
@@ -97,6 +102,10 @@ aside {
 .dark-theme button {
     background-color: inherit;
     border: none;
+}
+
+.submenu:hover div {
+    display: block;
 }
 
 h1, h2, h3 {
@@ -181,6 +190,10 @@ html[data-theme="dark"] {
     filter: var(--color-dark-icon2)
 }
 
+header ul li:nth-child(4) div li {
+    margin: 0px;
+}
+
 header ul li {
     margin: 7px 0 7px 0;
 }
@@ -254,6 +267,21 @@ ul {
 }
 
 /*** CLASSES ***/
+.arrow {
+    -webkit-transform: rotate(-45deg);
+    border: solid var(--color-details);
+    border-width: 0px 2px 2px 0px;
+    display: inline-block;
+    margin-bottom: 2px;
+    padding: 3px;
+    transform: rotate(-45deg);
+}
+
+.submenu:hover .arrow {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
 h1.bigheader {
     font-size: 8vw;
     text-align: center;
@@ -367,6 +395,13 @@ header .current-page {
 
 .smallheader {
     font-size: 3vw;
+}
+
+.submenu-options {
+    background-color: var(--color-primary);
+    display: none;
+    padding: 5px 10px 5px 10px;
+    /* width: 100%; */
 }
 
 .warning {
