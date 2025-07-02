@@ -156,20 +156,20 @@ html {
 
 html[data-theme="dark"] {
     /* dark color palette */
-    --color-black: invert(0%) sepia(62%) saturate(1352%) hue-rotate(71deg) brightness(102%) contrast(88%); /* #0f0f0f */
-    --color-pink:  invert(73%) sepia(74%) saturate(2334%) hue-rotate(214deg) brightness(102%) contrast(96%); /* #de97fa */
+    --color-purple: invert(34%) sepia(39%) saturate(2774%) hue-rotate(251deg) brightness(100%) contrast(119%); /* #b23eff */
+    --color-white:  invert(90%) sepia(0%) saturate(0%) hue-rotate(194deg) brightness(91%) contrast(96%); /* #cecece */
 
-    --color-details:   #de97fa;
-    --color-footer:    #4b4b4b;
-    --color-lettering: #080808; /* #0f0f0f */
-    --color-primary:   #616161;
-    --color-secondary: #747474;
+    --color-details:   #b23eff;
+    --color-footer:    #0f0f0f;
+    --color-lettering: #cecece;
+    --color-primary:   #222222;
+    --color-secondary: #373434;
 
-    --color-dark-icon:    var(--color-pink);
-    --color-dark-icon2:   var(--color-black);
-    --color-menu-icon:    var(--color-pink);
-    --color-social-icon:  var(--color-black);
-    --color-social-icon2: var(--color-pink);
+    --color-dark-icon:    var(--color-purple);
+    --color-dark-icon2:   var(--color-white);
+    --color-menu-icon:    var(--color-purple);
+    --color-social-icon:  var(--color-white);
+    --color-social-icon2: var(--color-purple);
 }
 
 .footer-icon li a img {
@@ -310,6 +310,11 @@ header .current-page {
     color: var(--color-lettering);
     font-size: 24px;
     letter-spacing: 3px;
+    text-decoration: none;
+}
+
+header .current-subitem {
+    color: var(--color-lettering);
     text-decoration: none;
 }
 
