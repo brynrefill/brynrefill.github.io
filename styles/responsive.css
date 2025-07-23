@@ -23,7 +23,7 @@
     }
 
     .heading h2 {
-        font-size: 20vw;
+        font-size: 40px;
     }
 
     header {
@@ -45,7 +45,7 @@
         filter: var(--color-dark-icon);
     }
 
-    header ul li:nth-child(4) div li {
+    header ul li:nth-child(5) div li {
         padding: 10px 0px;
     }
 
@@ -59,16 +59,11 @@
         background-color: var(--color-footer);
     }
 
-    #whats-new .content p {
-        margin-top: 5px;
-    }
-
     .copyright p {
         font-size: 1.0rem;
     }
 
     pre {
-        overflow-x: auto;
         padding: 10px 20px 10px 20px;
     }
 
@@ -127,10 +122,6 @@
         font-size: 10vw;
     }
 
-    .smallheader:nth-of-type(2) {
-        display: none;
-    }
-
     .submenu-options {
         /* background-color: var(--color-footer); */
         display: block;
@@ -164,12 +155,6 @@
     }
 
     /*** IDS ***/
-    /*
-    #hero-description {
-        font-size: 5vw;
-    }
-    */
-
     #hero-name {
         font-size: 35vw;
     }
@@ -180,13 +165,17 @@
 
     section#about-intro,
     section#contact-intro,
-    section#home,
     section#post,
     section#posts-2025,
     section#tags-list {
-        padding-top: 150px; /* 120px */
+        padding-top: 150px;
     }
 
+    section#home {
+        padding-top: 100px;
+    }
+
+    section#about-intro,
     section#posts-2025,
     section#tags-list {
         height: 100vh; /* temp class; to remove eventually */

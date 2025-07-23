@@ -62,13 +62,11 @@
 a, a:active, a:link, a:visited {
     color: var(--color-details);
     font-weight: 500;
-    text-decoration: none;
 }
 
 a:hover {
-    color: var(--color-details);
+    color: var(--color-lettering);
     font-weight: 500;
-    text-decoration: underline;
 }
 
 .footer-icon li a {
@@ -80,11 +78,13 @@ a:hover {
 
 .copyright p a {
     color: var(--color-lettering);
+    text-decoration: none;
 }
 
 header ul li.submenu > a:first-of-type {
     color: var(--color-lettering);
     pointer-events: none;
+    text-decoration: none;
 }
 
 aside {
@@ -113,9 +113,9 @@ h1, h2, h3 {
     font-weight: 450;
 }
 
-.heading h1,
+/*.heading h1,*/
 .heading h2 {
-    font-size: 50px;
+    font-size: 30px;
 }
 
 .content h3 {
@@ -148,6 +148,7 @@ hr {
     border: 0;
     border-top: 5px solid var(--color-secondary);
     margin-bottom: 20px;
+    margin-top: 30px;
 }
 
 html {
@@ -160,7 +161,7 @@ html[data-theme="dark"] {
     --color-white:  invert(90%) sepia(0%) saturate(0%) hue-rotate(194deg) brightness(91%) contrast(96%); /* #cecece */
 
     --color-details:   #b23eff;
-    --color-footer:    #0f0f0f;
+    --color-footer:    #181818;
     --color-lettering: #cecece;
     --color-primary:   #222222;
     --color-secondary: #373434;
@@ -190,7 +191,7 @@ html[data-theme="dark"] {
     filter: var(--color-dark-icon2)
 }
 
-header ul li:nth-child(4) div li {
+header ul li:nth-child(5) div li {
     margin: 0px;
 }
 
@@ -251,6 +252,7 @@ pre {
     color: var(--color-lettering);
     font-family: 'Courier New', monospace;
     font-size: 1rem;
+    overflow-x: auto;
     padding: 10px 0 10px 20px;
     /* text-align: center; */
 }
@@ -259,7 +261,7 @@ section {
     font-size: 1.2rem;
     margin-left: calc(18% + 5px);
     margin-right: calc(18% + 5px);
-    padding: 80px 5.810vw 76px 5.810vw; /* 100px 23.810vw 100px 23.810vw */
+    padding: 40px 5.810vw 36px 5.810vw; /* 100px 23.810vw 100px 23.810vw */
 }
 
 ul {
@@ -284,18 +286,19 @@ ul {
 
 h1.bigheader {
     font-size: 8vw;
+    margin-bottom: 30px;
     text-align: center;
-    text-decoration: initial;
+    /* text-decoration: initial; */
+}
+
+#post h1.bigheader {
+    margin-bottom: 0px;
 }
 
 .check-list { /* custom unordered list */
     margin: 0;
     padding-left: 1rem;
     /* padding-top: 0.5rem; */
-}
-
-#whats-new .content {
-    display: flex; /* I'll need it when num of latest-post >= 2 */
 }
 
 .copyright {
@@ -308,8 +311,6 @@ h1.bigheader {
 
 header .current-page {
     color: var(--color-lettering);
-    font-size: 24px;
-    letter-spacing: 3px;
     text-decoration: none;
 }
 
@@ -351,7 +352,7 @@ header .current-subitem {
 
 .heading {
     color: var(--color-lettering);
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .innercursor {
@@ -387,12 +388,6 @@ header .current-subitem {
     font-weight: 500;
 }
 
-.latest-post {
-    background-color: var(--color-primary);
-    /* margin: 5px; */
-    padding: 10px;
-}
-
 .menu-div {
     text-align: right;
     transition: 0.5s;
@@ -416,10 +411,6 @@ header .current-subitem {
 }
 
 /*** IDS ***/
-#hero-description {
-    text-align: center;
-}
-
 #right-panel {
     background-color: var(--color-secondary);
     bottom: 0;
@@ -452,6 +443,7 @@ section#whats-new {
     background: var(--color-secondary);
 }
 
+section#about-intro,
 section#posts-2025,
 section#tags-list {
     height: calc(100vh - 79px + 1px); /* temp class; to remove eventually */
