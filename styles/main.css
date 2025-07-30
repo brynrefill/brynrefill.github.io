@@ -92,6 +92,15 @@ aside {
     z-index: 1;
 }
 
+blockquote {
+    background-color: var(--color-secondary);
+    border-left: 5px solid var(--color-lettering);
+    color: var(--color-lettering);
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding: 15px;
+}
+
 .footer-icon li button {
     display: grid;
     height: 40px;
@@ -104,6 +113,14 @@ aside {
     border: none;
 }
 
+details {
+    background-color: var(--color-secondary);
+    border-left: 5px solid var(--color-lettering);
+    color: var(--color-lettering);
+    margin-top: 5px;
+    padding: 15px;
+}
+
 .submenu:hover div {
     display: block;
 }
@@ -113,13 +130,14 @@ h1, h2, h3 {
     font-weight: 450;
 }
 
-/*.heading h1,*/
+/* .heading h1, */
+.content h2,
 .heading h2 {
     font-size: 30px;
 }
 
 .content h3 {
-    font-size: 30px;
+    font-size: 25px;
 }
 
 #right-panel h5 {
@@ -245,6 +263,8 @@ p {
 
 #right-panel p {
     padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: initial;
 }
 
 pre {
@@ -255,6 +275,10 @@ pre {
     overflow-x: auto;
     padding: 10px 0 10px 20px;
     /* text-align: center; */
+}
+
+#post pre {
+    background-color: var(--color-secondary);
 }
 
 section {
