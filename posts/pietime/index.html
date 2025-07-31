@@ -8,6 +8,7 @@
 
     <link rel="icon" href="/assets/icons/palm.png">
     <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/highlighter.css">
     <link rel="stylesheet" href="/styles/responsive.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
@@ -74,13 +75,13 @@
             <h2>Solution steps</h2>
             <h3 id="step1">Step 1: source code analysis</h3>
             <p>I started by analyzing the program's source code and understanding how it works.</p>
-            <p><span class="keyword">segfault_handler</span> function:<pre class="C-language">
+            <p><span class="keyword">segfault_handler</span> function:<pre class="c-language">
 void segfault_handler() {
     printf("Segfault Occurred, incorrect address.\n");
     exit(0);
 }</pre></p>
             <p>it is a signal handler for SIGSEGV signals. When a segmentation fault occurs, this signal is sent by the OS to the process running this program and this function will be called. In this case prints the above message and terminates successfully.</p>
-            <p><span class="keyword">win</span> function:<pre class="C-language">
+            <p><span class="keyword">win</span> function:<pre class="c-language">
 int win() {
     [...]
 
@@ -101,7 +102,7 @@ int win() {
     [...]
 }</pre></p>
             <p>it reads a local file, where the flag is located, and prints the content. This function is never called by the main function, unless we find a way to do it (we'll see later).</p>
-            <p><span class="keyword">main</span> function:<pre class="C-language">
+            <p><span class="keyword">main</span> function:<pre class="c-language">
 int main() {
     signal(SIGSEGV, segfault_handler);
     setvbuf(stdout, NULL, _IONBF, 0); // _IONBF = Unbuffered
@@ -178,5 +179,6 @@ picoCTF{b4s1c_p051t10n_1nd3p3nd3nc3_80c3b8b7}</pre></details>
     </footer>
 
     <script type="text/javascript" src="/scripts/main.js"></script>
+    <script type="text/javascript" src="/scripts/highlighter.js"></script>
 </body>
 </html>

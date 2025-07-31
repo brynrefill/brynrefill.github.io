@@ -1,0 +1,62 @@
+/*** highlighter style ***/
+/*
+    this .css is organized by alphabetizing properties and selectors (alphabetical convention).
+
+    I first ordered all the tags, then the classes and finally the ids. Furthermore, to avoid ambiguity, for each block of properties, from right to left this rule applies: in the ordering, tags take priority over classes and classes take priority over ids
+*/
+
+:root {
+    --color-bash-keyword: #7c027c;
+    --color-c-comment:    #066b06;
+    --color-c-keyword1:   #2958d8;
+    --color-c-keyword2:   #9f0eac;
+    --color-c-keyword3:   #646304;
+    --color-c-string:     #96400e;
+}
+
+/*** TAGS ***/
+html[data-theme="dark"] {
+    --color-bash-keyword: var( --color-lettering);
+    --color-c-comment:    var( --color-lettering);
+    --color-c-keyword1:   var( --color-lettering);
+    --color-c-keyword2:   var( --color-lettering);
+    --color-c-keyword3:   var( --color-lettering);
+    --color-c-string:     var( --color-lettering);
+}
+
+/*** CLASSES ***/
+.bash-keyword {
+    color: var(--color-bash-keyword);
+}
+
+.c-comment {
+    color: var(--color-c-comment);
+}
+
+.c-keyword1 {
+    color: var(--color-c-keyword1);
+}
+
+.c-keyword2 {
+    color: var(--color-c-keyword2);
+}
+
+.c-keyword3 {
+    color: var(--color-c-keyword3);
+}
+
+.c-string {
+    color: var(--color-c-string);
+}
+
+.bash-keyword,
+.c-comment,
+.c-keyword1,
+.c-keyword2,
+.c-keyword3,
+.c-string {
+    font-family: inherit;
+}
+
+/*** IDS ***/
+/**/
