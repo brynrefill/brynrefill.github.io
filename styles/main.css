@@ -252,6 +252,10 @@ p {
     padding-bottom: 24px;
 }
 
+#posts-2025 .content p {
+    padding-bottom: initial;
+}
+
 #whats-new .content p {
     padding: 0px;
 }

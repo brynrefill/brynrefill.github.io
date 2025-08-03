@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RED - picoCTF challenge - Writeup | Bryn Refill's Blog</title>
+
+    <link rel="icon" href="/assets/icons/palm.png">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/highlighter.css">
+    <link rel="stylesheet" href="/styles/responsive.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <script type="text/javascript" src="/scripts/fadeinfadeout.js"></script>
+
+    <header>
+        <div class="toggle" onclick="toggleMenu();"></div>
+        <div class="menu-div">
+            <ul class="menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/posts/" class="current-page keyword">Posts</a></li>
+                <li><a href="/tags/">Tags</a></li>
+                <li><a href="/contact/">Contact</a></li>
+                <li class="submenu">
+                    <a href="#">Extras <i class="arrow"></i></a>
+                    <div class="submenu-options">
+                        <ul>
+                            <li><a href="/extras/about/">about</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="post">
+        <div class="heading">
+            <h1 class="bigheader">RED</h1>
+            <p><span class="keyword">Posted on</span>: Aug. 03, 2025</p>
+            <p><span class="keyword">Reading time</span>: 15 min</p>
+            <p><span class="keyword">Tags</span>: <a href="/tags/ctf/">[ctf]</a> <a href="/tags/writeup/">[writeup]</a> <a href="/tags/forensics/">[forensics]</a></p>
+        </div>
+        <hr/>
+        <div class="writeup-data">
+            <h2>General information</h2>
+            <p><span class="keyword">Completion date</span>: Jun. 20, 2025</p>
+            <p><span class="keyword">Name</span>: RED</p>
+            <p><span class="keyword">Event</span>: picoCTF 2025</p>
+            <p><span class="keyword">Category</span>: forensics</p>
+            <p><span class="keyword">Difficulty</span>: easy</p>
+            <p><span class="keyword">Platform</span>: picoCTF</p>
+            <p><span class="keyword">Release date</span>: Mar. 07, 2025</p>
+            <p><span class="keyword">Description</span>:</p>
+            <blockquote>
+                RED, RED, RED, RED<br/>
+                Download the image: <a href="https://github.com/brynrefill/ctf-vault/blob/main/picoctf/forensics_easy_red/red.png" target="_blank" rel="noopener noreferrer">red.png</a>
+            </blockquote>
+        </div>
+        <hr/>
+        <div class="content">
+            <h2 id="what-I-used">What I used</h2>
+            <ul class="check-list">
+                <li><span class="keyword">Image</span> reported in the description of the challenge</li>
+                <li><span class="keyword">Python</span> to extract the <span class="keyword">LSBs</span> from the image pixels</li>
+                <li><span class="keyword">Other</span> minor commands</li>
+            </ul>
+            <hr/>
+            <h2>Solution steps</h2>
+            <h3 id="step1">Step 1: image analysis</h3>
+            <p>I started by doing a basic analysis of the image.<pre class="bash-language">
+$ file ./red.png
+./red.png: PNG image data, 128 x 128, 8-bit/color RGBA, non-interlaced</pre></p>
+            <p>It seemed to be a real PNG image. I extracted the strings inside it.<pre class="bash-language">
+$ strings ./red.png
+IHDR
+tEXtPoem
+Crimson heart, vibrant and bold,
+Hearts flutter at your sight.
+Evenings glow softly red,
+Cherries burst with sweet life.
+Kisses linger with your warmth.
+Love deep as merlot.
+Scarlet leaves falling softly,
+Bold in every stroke.x
+IDATx
+IEND</pre></p>
+            <p>It came out as a kind of love poem. I realized that, by looking at the first letter of each line, it hides a message that says: "CHECK LSB". So, the advice was to check the LSBs of the image pixels.</p>
+            <p>Every image is made up of a grid of pixels and each pixel contains information about the color to be displayed at that specific point. Most images use the <a href="https://en.wikipedia.org/wiki/RGB_color_model" target="_blank" rel="noopener noreferrer">RGB color model</a>, which stands for Red, Green, Blue (or RGBA, where A stands for Alpha, indicating the level of transparency). This is an additive color model used to represent colors on a screen, that are obtained by combining different intensities of red, green, and blue.</p>
+            <p>Each component (also referred as color channel) of the tuple [R, G, B], has a value ranging from 0 to 255. Therefore, in computing terms, the information for each component is represented by one byte.</p>
+            <p>The <a href="https://en.wikipedia.org/wiki/Bit_numbering#Least_significant_bit" target="_blank" rel="noopener noreferrer">LSB</a> of each of these bytes can be modified and used to hide information. This method of <a href="https://en.wikipedia.org/wiki/Steganography" target="_blank" rel="noopener noreferrer">Steganography</a> (LSB Steganography) will alter the color of each pixel, but only slightly. In fact, it's hardly noticeable to the naked eye and the image would look the same as before.</p>
+
+            <h3 id="step2">Step 2: exploitation</h3>
+            <p>For the reasons just mentioned, I developed a Python script to try extracting the LSBs. You can find a more general version of it <a href="https://github.com/brynrefill/ctf-vault/blob/main/tools/extract_lsbs.py" target="_blank" rel="noopener noreferrer">here</a>.<pre class="python-language">
+import numpy as np
+from PIL import Image
+
+image_path = "./red.png"
+image  = Image.open(image_path, "r")
+pixels = np.array(image.getdata())
+
+num_channels   = 0
+ls_bits        = ""
+hidden_message = ""
+
+if   image.mode == "RGB":  num_channels = 3
+elif image.mode == "RGBA": num_channels = 4
+else:
+    print("Cannot process this image because it's not supported.")
+    exit(0)
+
+# num_pixels = len(pixels)
+num_pixels = pixels.size // num_channels
+
+# create a concatenation of all the LSBs (for each channel of each pixel)
+for i in range(num_pixels):
+    for j in range(num_channels):
+        ls_bits += bin(pixels[i][j])[-1]
+
+# from the previous concatenation, create a list of 8-bits chunks
+ls_bits = [ls_bits[i:i+8] for i in range(0, len(ls_bits), 8)]
+
+# from the previous list, create a concatenation of all the ASCII characters
+# corresponding to the chunks
+for i in range(len(ls_bits)):
+    hidden_message += chr(int(ls_bits[i], 2))
+
+print(hidden_message)</pre></p>
+            <p>And then I executed it, trying to understand what was hidden.<pre class="bash-language">
+$ python3 extract_lsbs.py
+cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==</pre></p>
+            <p>I obtained a very long string that seemed to be the repeated concatenation of a shorter string encoded in base64. So, I took it and decoded it, obtaining the flag.<pre class="bash-language">
+$ echo "cGljb0NURntyM2RfMXNfdGgzX3VsdDFtNHQzX2N1cjNfZjByXzU0ZG4zNTVffQ==" | base64 -d
+picoCTF{###_##_###_########_####_###_#######_}</pre></p>
+            <hr/>
+            <h2 id="flags">Flag</h2>
+            <details><summary>Click to reveal the flag</summary><pre class="bash-language">
+picoCTF{r3d_1s_th3_ult1m4t3_cur3_f0r_54dn355_}</pre></details>
+            <hr/>
+            <h2 id="personal-notes">Personal notes</h2>
+            <ul class="check-list">
+                <li>In LSB Steganography, information can be hidden using any possible subset of the available channels: e.g., [R, G], [R, B], [G], [R, G, B, A], [B, A]. Additionally, the message can be hidden starting from a certain offset and not necessarily from the first pixel and can end at a certain offset before the end and not necessarily at the last pixel.</li>
+            </ul>
+        </div>
+    </section>
+
+    <aside id="right-panel">
+        <h5>Contents</h5>
+        <ul class="check-list">
+            <li><a href="#post">Intro</a></li>
+            <li><a href="#what-I-used">What I used</a></li>
+            <li><a href="#step1">Step 1</a></li>
+            <li><a href="#step2">Step 2</a></li>
+        </ul>
+        <h5>Recently used tags</h5>
+        <p><a href="/tags/forensics/">[forensics]</a> <a href="/tags/writeup/">[writeup]</a> <a href="/tags/ctf/">[ctf]</a> <a href="/tags/pwn/">[pwn]</a> <a href="/tags/talks/">[talks]</a></p>
+    </aside>
+
+    <footer class="copyright">
+        <ul class="footer-icon">
+            <li><a href="mailto:info@brynrefill.com" title="Email"><img src="/assets/icons/email.png" alt="Email icon"></a></li>
+            <li><a href="https://github.com/brynrefill" title="GitHub" target="_blank"><img src="/assets/icons/github.png" alt="GitHub icon"></a></li>
+            <li class="dark-theme"><button onclick="toggleTheme();" title="Switch theme"><img src="/assets/icons/palm.png" alt="Switch theme icon"></button></li>
+        </ul>
+        <p>&copy; 2025 <a href="https://brynrefill.com">Bryn Refill</a>. All rights reserved.</p>
+        <p><span class="warning">The blog is under maintenance and will be active soon!</span></p>
+        <p><span class="warning">In the meantime emails won't be received.</span></p>
+    </footer>
+
+    <script type="text/javascript" src="/scripts/main.js"></script>
+    <script type="text/javascript" src="/scripts/highlighter.js"></script>
+</body>
+</html>

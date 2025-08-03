@@ -7,21 +7,21 @@
 
 :root {
     --color-bash-keyword: #7c027c;
-    --color-c-comment:    #066b06;
-    --color-c-keyword1:   #2958d8;
-    --color-c-keyword2:   #9f0eac;
-    --color-c-keyword3:   #646304;
-    --color-c-string:     #96400e;
+    --color-comment:      #066b06;
+    --color-keyword1:     #2958d8;
+    --color-keyword2:     #9f0eac;
+    --color-keyword3:     #646304;
+    --color-string:       #96400e;
 }
 
 /*** TAGS ***/
 html[data-theme="dark"] {
     --color-bash-keyword: var( --color-lettering);
-    --color-c-comment:    var( --color-lettering);
-    --color-c-keyword1:   var( --color-lettering);
-    --color-c-keyword2:   var( --color-lettering);
-    --color-c-keyword3:   var( --color-lettering);
-    --color-c-string:     var( --color-lettering);
+    --color-comment:      var( --color-lettering);
+    --color-keyword1:     var( --color-lettering);
+    --color-keyword2:     var( --color-lettering);
+    --color-keyword3:     var( --color-lettering);
+    --color-string:       var( --color-lettering);
 }
 
 /*** CLASSES ***/
@@ -29,24 +29,33 @@ html[data-theme="dark"] {
     color: var(--color-bash-keyword);
 }
 
-.c-comment {
-    color: var(--color-c-comment);
+.c-comment,
+.python-comment {
+    color: var(--color-comment);
 }
 
-.c-keyword1 {
-    color: var(--color-c-keyword1);
+.c-comment *,
+.python-comment * {
+    color: inherit !important;
 }
 
-.c-keyword2 {
-    color: var(--color-c-keyword2);
+.c-keyword1,
+.python-keyword1 {
+    color: var(--color-keyword1);
 }
 
-.c-keyword3 {
-    color: var(--color-c-keyword3);
+.c-keyword2,
+.python-keyword2 {
+    color: var(--color-keyword2);
 }
 
-.c-string {
-    color: var(--color-c-string);
+.c-keyword3,
+.python-keyword3 {
+    color: var(--color-keyword3);
+}
+
+.string {
+    color: var(--color-string);
 }
 
 .bash-keyword,
@@ -54,7 +63,11 @@ html[data-theme="dark"] {
 .c-keyword1,
 .c-keyword2,
 .c-keyword3,
-.c-string {
+.python-comment,
+.python-keyword1,
+.python-keyword2,
+.python-keyword3,
+.string {
     font-family: inherit;
 }
 
