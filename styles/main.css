@@ -117,7 +117,6 @@ details {
     background-color: var(--color-secondary);
     border-left: 5px solid var(--color-lettering);
     color: var(--color-lettering);
-    margin-top: 5px;
     padding: 15px;
 }
 
@@ -134,6 +133,11 @@ h1, h2, h3 {
 .content h2,
 .heading h2 {
     font-size: 30px;
+}
+
+.content h2,
+.writeup-data h2 {
+    margin-bottom: 10px;
 }
 
 .content h3 {
@@ -252,14 +256,6 @@ p {
     padding-bottom: 24px;
 }
 
-#posts-2025 .content p {
-    padding-bottom: initial;
-}
-
-#whats-new .content p {
-    padding: 0px;
-}
-
 .copyright p {
     padding: 0px;
     text-align: center;
@@ -271,13 +267,17 @@ p {
     text-align: initial;
 }
 
+#tags-list p {
+    text-align: center;
+}
+
 pre {
     background-color: var(--color-primary);
     color: var(--color-lettering);
     font-family: 'Courier New', monospace;
     font-size: 1rem;
     overflow-x: auto;
-    padding: 10px 0 10px 20px;
+    padding: 10px 20px 10px 20px;
     /* text-align: center; */
 }
 
@@ -290,6 +290,22 @@ section {
     margin-left: calc(18% + 5px);
     margin-right: calc(18% + 5px);
     padding: 40px 5.810vw 36px 5.810vw; /* 100px 23.810vw 100px 23.810vw */
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td {
+    color: var(--color-lettering);
+    padding-right: 5px;
+    text-align: left;
+    vertical-align: top;
+    /* width: auto; */
+}
+
+td:nth-child(2) {
+    padding-right: initial;
 }
 
 ul {
@@ -414,6 +430,10 @@ header .current-subitem {
 
 .keyword {
     font-weight: 500;
+}
+
+.logs {
+    font-family: 'Courier New', monospace;
 }
 
 .menu-div {
