@@ -1,0 +1,132 @@
+[
+  {
+    "id": "home",
+    "out": "index.html",
+    "active": "home",
+    "title": "Bryn Refill's Blog",
+    "highlighter": false,
+    "contentFile": "content/home.html",
+    "asideContents": "\n            <!-- <li><a href=\"#home\">Home</a></li> -->\n            <li><a href=\"#whats-new\">What's new</a></li>\n        ",
+    "footerExtra": ""
+  },
+  {
+    "id": "posts",
+    "out": "posts/index.html",
+    "active": "posts",
+    "title": "Posts | Bryn Refill's Blog",
+    "highlighter": false,
+    "contentFile": "content/posts/posts.html",
+    "asideContents": "\n            <li><a href=\"#talks\">Talks</a></li>\n            <li><a href=\"#ctf-writeups\">CTF Writeups</a></li>\n        ",
+    "footerExtra": ""
+  },
+  {
+    "id": "tags",
+    "out": "tags/index.html",
+    "active": "tags",
+    "title": "Tags | Bryn Refill's Blog",
+    "highlighter": false,
+    "contentFile": "content/tags/tags.html",
+    "asideContents": "\n            <li><a href=\"#tags-list\">Tags list</a></li>\n        ",
+    "footerExtra": ""
+  },
+  {
+    "id": "contact",
+    "out": "contact/index.html",
+    "active": "contact",
+    "title": "Contact | Bryn Refill's Blog",
+    "highlighter": true,
+    "contentFile": "content/contact/contact.html",
+    "asideContents": "\n            <li><a href=\"#contact-intro\">Intro</a></li>\n            <li><a href=\"#pgp-key\">PGP enc</a></li>\n        ",
+    "footerExtra": ""
+  },
+  {
+    "id": "about",
+    "out": "extras/about/index.html",
+    "active": "about",
+    "title": "About | Bryn Refill's Blog",
+    "highlighter": false,
+    "contentFile": "content/extras/about.html",
+    "asideContents": "\n            <li><a href=\"#about-intro\">Intro</a></li>\n            <!--<li><a href=\"#projects\">Projects</a></li>\n            <li><a href=\"#extras\">Extras</a></li>-->\n        ",
+    "footerExtra": ""
+  },
+  {
+    "id": "post-helloworld",
+    "out": "posts/helloworld/index.html",
+    "active": "posts",
+    "title": "Hello, World! | Bryn Refill's Blog",
+    "highlighter": false,
+    "contentFile": "content/posts/post-helloworld.html",
+    "asideContents": "\n            <li><a href=\"#post\">Hello, World!</a></li>\n        ",
+    "footerExtra": "    <!--++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>----.++++++++++++++++.>+++++++++++++++++++++++.<<+++++++++++++++++++++++++.>>-------------------.<<----.>>---------.+++++++++++++++.+++++++.--------.-----------.<<.>>++++++++++++++++.<<++.>+++++++++++++.>-----.<<-.+.-----.>>+.<<---------------.>.--------.>------.<<+++++++++++++++++++.+++.>++++++++.>----.<<-------.>.<+++++++.>>++++.<<----.>>+++++++++++++++++.<.>------------.<<.+.>>+.<<+++++++++++.>>+++++++++++++++.-->"
+  },
+  {
+    "id": "post-pietime",
+    "out": "posts/pietime/index.html",
+    "active": "posts",
+    "title": "PIE TIME - picoCTF challenge - Writeup | Bryn Refill's Blog",
+    "highlighter": true,
+    "contentFile": "content/posts/post-pietime.html",
+    "asideContents": "\n            <li><a href=\"#post\">Intro</a></li>\n            <li><a href=\"#what-I-used\">What I used</a></li>\n            <li><a href=\"#step1\">Step 1</a></li>\n            <li><a href=\"#step2\">Step 2</a></li>\n            <li><a href=\"#step3\">Step 3</a></li>\n        ",
+    "footerExtra": ""
+  },
+  {
+    "id": "post-red",
+    "out": "posts/red/index.html",
+    "active": "posts",
+    "title": "RED - picoCTF challenge - Writeup | Bryn Refill's Blog",
+    "highlighter": true,
+    "contentFile": "content/posts/post-red.html",
+    "asideContents": "\n            <li><a href=\"#post\">Intro</a></li>\n            <li><a href=\"#what-I-used\">What I used</a></li>\n            <li><a href=\"#step1\">Step 1</a></li>\n            <li><a href=\"#step2\">Step 2</a></li>\n        ",
+    "footerExtra": ""
+  },
+  {
+    "id": "tag-talks",
+    "out": "tags/talks/index.html",
+    "active": "tags",
+    "title": "Tag: [talks] | Bryn Refill's Blog",
+    "highlighter": false,
+    "contentFile": "content/tags/tag-talks.html",
+    "asideContents": "\n            <li><a href=\"#talks\">Talks</a></li>\n        ",
+    "footerExtra": ""
+  },
+  {
+    "id": "tag-ctf",
+    "out": "tags/ctf/index.html",
+    "active": "tags",
+    "title": "Tag: [ctf] | Bryn Refill's Blog",
+    "highlighter": false,
+    "contentFile": "content/tags/tag-ctf.html",
+    "asideContents": "\n            <li><a href=\"#ctf-writeups\">CTF Writeups</a></li>\n        ",
+    "footerExtra": ""
+  },
+  {
+    "id": "tag-pwn",
+    "out": "tags/pwn/index.html",
+    "active": "tags",
+    "title": "Tag: [pwn] | Bryn Refill's Blog",
+    "highlighter": false,
+    "contentFile": "content/tags/tag-pwn.html",
+    "asideContents": "\n            <li><a href=\"#ctf-writeups\">CTF Writeups</a></li>\n        ",
+    "footerExtra": ""
+  },
+  {
+    "id": "tag-forensics",
+    "out": "tags/forensics/index.html",
+    "active": "tags",
+    "title": "Tag: [forensics] | Bryn Refill's Blog",
+    "highlighter": false,
+    "contentFile": "content/tags/tag-forensics.html",
+    "asideContents": "\n            <li><a href=\"#ctf-writeups\">CTF Writeups</a></li>\n        ",
+    "footerExtra": ""
+  },
+  {
+    "id": "tag-writeup",
+    "out": "tags/writeup/index.html",
+    "active": "tags",
+    "title": "Tag: [writeup] | Bryn Refill's Blog",
+    "highlighter": false,
+    "contentFile": "content/tags/tag-writeup.html",
+    "asideContents": "\n            <li><a href=\"#ctf-writeups\">CTF Writeups</a></li>\n        ",
+    "footerExtra": ""
+  }
+]

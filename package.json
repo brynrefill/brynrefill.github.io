@@ -1,0 +1,9 @@
+{
+  "name": "brynrefill.github.io",
+  "private": true,
+  "version": "1.0.0",
+  "description": "My static site builder tool for brynrefill.github.io (no runtime dependencies, no server-side build step required by GitHub Pages).",
+  "scripts": {
+    "build": "node build/build.js"
+  }
+}
