@@ -474,6 +474,7 @@ header .current-subitem {
 section#about-intro,
 section#contact-intro,
 section#home,
+section#not-found,
 section#post,
 section#posts-2025,
 section#tags-list {
@@ -492,7 +493,24 @@ section#whats-new {
 }
 
 section#about-intro,
+section#not-found,
 section#posts-2025,
 section#tags-list {
     height: calc(100vh - 79px + 1px); /* temp class; to remove eventually */
+}
+
+.blink-cursor {
+    animation: blink-cursor 1s step-start infinite;
+}
+
+@keyframes blink-cursor {
+    50% {
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .blink-cursor {
+        animation: none;
+    }
 }

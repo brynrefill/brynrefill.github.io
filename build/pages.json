@@ -128,5 +128,15 @@
     "contentFile": "content/tags/tag-writeup.html",
     "asideContents": "\n            <li><a href=\"#ctf-writeups\">CTF Writeups</a></li>\n        ",
     "footerExtra": ""
+  },
+  {
+    "id": "not-found",
+    "out": "404.html",
+    "active": "none",
+    "title": "Page not found | Bryn Refill's Blog",
+    "highlighter": false,
+    "contentFile": "content/404.html",
+    "asideContents": "\n            <li><a href=\"#not-found\">Not found</a></li>\n        ",
+    "footerExtra": ""
   }
 ]

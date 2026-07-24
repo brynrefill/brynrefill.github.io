@@ -161,6 +161,7 @@
 
     section#about-intro,
     section#contact-intro,
+    section#not-found,
     section#post,
     section#posts-2025,
     section#tags-list {
@@ -172,6 +173,7 @@
     }
 
     section#about-intro,
+    section#not-found,
     section#posts-2025,
     section#tags-list {
         height: 100vh; /* temp class; to remove eventually */

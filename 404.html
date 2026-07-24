@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page not found | Bryn Refill's Blog</title>
+
+    <link rel="icon" href="/assets/icons/palm.png">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/responsive.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <script type="text/javascript" src="/scripts/fadeinfadeout.js"></script>
+
+    <header>
+        <div class="toggle" onclick="toggleMenu();"></div>
+        <div class="menu-div">
+            <ul class="menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/posts/">Posts</a></li>
+                <li><a href="/tags/">Tags</a></li>
+                <li><a href="/contact/">Contact</a></li>
+                <li class="submenu">
+                    <a href="#">Extras <i class="arrow"></i></a>
+                    <div class="submenu-options">
+                        <ul>
+                            <li><a href="/extras/about/">about</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="not-found">
+        <div class="heading">
+            <h1 class="bigheader">404</h1>
+        </div>
+        <div class="content">
+            <p>Looks like this page <span class="keyword">doesn't exist</span>. You've entered the <span class="keyword">NULL</span> space, and <span class="keyword">snacks</span> aren't available either... to pass the time.</p>
+            <p>I know you might be disappointed, but you could always:
+                <ul class="check-list">
+                    <li>go back <a href="/">home</a>,</li>
+                    <li>browse the <a href="/posts/">posts</a>, and</li>
+                    <li>take a look at the available <a href="/tags/">tags</a>.</li>
+                </ul>
+            </p>
+        </div>
+    </section>
+
+    <script type="text/javascript">window.addEventListener("load", function () {document.cookie = ".q,h=DH8+PFA46/X61S6+ODZ2; path=/";});</script>
+
+    <aside id="right-panel">
+        <h5>Contents</h5>
+        <ul class="check-list">
+            <li><a href="#not-found">Not found</a></li>
+        </ul>
+        <h5>Recently used tags</h5>
+        <p><a href="/tags/forensics/">[forensics]</a> <a href="/tags/writeup/">[writeup]</a> <a href="/tags/ctf/">[ctf]</a> <a href="/tags/pwn/">[pwn]</a> <a href="/tags/talks/">[talks]</a></p>
+    </aside>
+
+    <footer class="copyright">
+        <ul class="footer-icon">
+            <li><a href="mailto:info@brynrefill.com" title="Email"><img src="/assets/icons/email.png" alt="Email icon"></a></li>
+            <li><a href="https://github.com/brynrefill" title="GitHub" target="_blank" rel="noopener noreferrer"><img src="/assets/icons/github.png" alt="GitHub icon"></a></li>
+            <li class="dark-theme"><button onclick="toggleTheme();" title="Switch theme"><img src="/assets/icons/palm.png" alt="Switch theme icon"></button></li>
+        </ul>
+        <p>&copy; 2025 <a href="https://brynrefill.com">Bryn Refill</a>. All rights reserved.</p>
+    </footer>
+
+    <script type="text/javascript" src="/scripts/main.js"></script>
+</body>
+</html>
