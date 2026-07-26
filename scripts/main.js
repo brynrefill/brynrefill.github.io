@@ -54,7 +54,11 @@ $(document).ready(function() {
     }
 
     if(localStorage.getItem('darkMode') === 'enabled') {
-        $("html").attr("data-theme", "dark");
+        // from now on, the <html data-theme="dark"> is set by the inline script
+        // in <head>; only the cursor elements, which are created above, still
+        // need their dark-mode classes applied here
+        // $("html").attr("data-theme", "dark");
+
         mouseCursor.classList.add('cursor-dark');
         mouseInnerCursor.classList.add('innercursor-dark');
     }

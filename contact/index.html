@@ -6,6 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | Bryn Refill's Blog</title>
 
+    <!-- runs synchronously, before any stylesheet is applied, so a stored
+         dark-mode preference is set on <html> before first rendering instead of
+         flashing the default theme first -->
+    <script type="text/javascript">
+        (function () {
+            try {
+                if (localStorage.getItem("darkMode") === "enabled") {
+                    document.documentElement.setAttribute("data-theme", "dark");
+                }
+            } catch (e) {}
+        })();
+    </script>
+
     <link rel="icon" href="/assets/icons/palm.png">
     <link rel="alternate" type="application/rss+xml" title="Bryn Refill's Blog" href="/rss.xml">
     <link rel="stylesheet" href="/styles/main.css">
