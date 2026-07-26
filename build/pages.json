@@ -57,7 +57,12 @@
     "highlighter": false,
     "contentFile": "content/posts/post-helloworld.html",
     "asideContents": "\n            <li><a href=\"#post\">Hello, World!</a></li>\n        ",
-    "footerExtra": "    <!--++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>----.++++++++++++++++.>+++++++++++++++++++++++.<<+++++++++++++++++++++++++.>>-------------------.<<----.>>---------.+++++++++++++++.+++++++.--------.-----------.<<.>>++++++++++++++++.<<++.>+++++++++++++.>-----.<<-.+.-----.>>+.<<---------------.>.--------.>------.<<+++++++++++++++++++.+++.>++++++++.>----.<<-------.>.<+++++++.>>++++.<<----.>>+++++++++++++++++.<.>------------.<<.+.>>+.<<+++++++++++.>>+++++++++++++++.-->"
+    "footerExtra": "    <!--++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>----.++++++++++++++++.>+++++++++++++++++++++++.<<+++++++++++++++++++++++++.>>-------------------.<<----.>>---------.+++++++++++++++.+++++++.--------.-----------.<<.>>++++++++++++++++.<<++.>+++++++++++++.>-----.<<-.+.-----.>>+.<<---------------.>.--------.>------.<<+++++++++++++++++++.+++.>++++++++.>----.<<-------.>.<+++++++.>>++++.<<----.>>+++++++++++++++++.<.>------------.<<.+.>>+.<<+++++++++++.>>+++++++++++++++.-->",
+    "feed": {
+      "date": "2025-06-13",
+      "tags": ["talks"],
+      "description": "Kicking off this blog: what to expect here, mostly in-depth and hype-free notes on cybersecurity, computer engineering, and CTF write-ups."
+    }
   },
   {
     "id": "post-pietime",
@@ -67,7 +72,12 @@
     "highlighter": true,
     "contentFile": "content/posts/post-pietime.html",
     "asideContents": "\n            <li><a href=\"#post\">Intro</a></li>\n            <li><a href=\"#what-I-used\">What I used</a></li>\n            <li><a href=\"#step1\">Step 1</a></li>\n            <li><a href=\"#step2\">Step 2</a></li>\n            <li><a href=\"#step3\">Step 3</a></li>\n        ",
-    "footerExtra": ""
+    "footerExtra": "",
+    "feed": {
+      "date": "2025-07-31",
+      "tags": ["ctf", "writeup", "pwn"],
+      "description": "Writeup for PIE TIME, an easy pwn challenge from picoCTF 2025 involving a PIE-enabled binary."
+    }
   },
   {
     "id": "post-red",
@@ -77,7 +87,12 @@
     "highlighter": true,
     "contentFile": "content/posts/post-red.html",
     "asideContents": "\n            <li><a href=\"#post\">Intro</a></li>\n            <li><a href=\"#what-I-used\">What I used</a></li>\n            <li><a href=\"#step1\">Step 1</a></li>\n            <li><a href=\"#step2\">Step 2</a></li>\n        ",
-    "footerExtra": ""
+    "footerExtra": "",
+    "feed": {
+      "date": "2025-08-03",
+      "tags": ["ctf", "writeup", "forensics"],
+      "description": "Writeup for RED, an easy forensics challenge from picoCTF 2025 involving LSB steganography in a PNG image."
+    }
   },
   {
     "id": "tag-talks",

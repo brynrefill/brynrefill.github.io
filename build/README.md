@@ -13,11 +13,11 @@ build/
   site.json:        one-off site-wide values
   pages.json:       the manifest. One entry per output page
   build.js:         script that reads all of the above and writes the final HTML files
+  rss.js:           generates rss.xml from every page carrying "feed" metadata
 ```
 
 ## Adding or editing a page
-1. Create/edit `build/content/*/*.html` with just the unique `<section>`
-   content for that page (no header/footer/aside, no `<head>`).
+1. Create/edit `build/content/*/*.html` with just the unique `<section>` content for that page (no header/footer/aside, no `<head>`).
 2. Add/edit its entry in `build/pages.json`:
    ```json
    {
@@ -31,10 +31,8 @@ build/
      "footerExtra": ""
    }
    ```
-   - `active` controls which nav item gets highlighted: `home`, `posts`,
-     `tags`, `contact`, or `about`;
-   - `highlighter`: if `true` pulls in `/styles/highlighter.css` and
-     `/scripts/highlighter.js` for pages with code snippets;
+   - `active` controls which nav item gets highlighted: `home`, `posts`, `tags`, `contact`, or `about`;
+   - `highlighter`: if `true` pulls in `/styles/highlighter.css` and `/scripts/highlighter.js` for pages with code snippets;
    - `footerExtra` is a way to include rare per-page extras.
 3. Run the build script:
    ```bash
@@ -44,7 +42,22 @@ build/
 
 Both the `build/` source files and the generated `index.html` files must be committed and pushed to the remote repository.
 
-To change the nav, footer, or right-panel markup site-wide, edit the
-corresponding file under `build/components/` (or `build/layout.html` for
-`<head>`/body structure) once, then re-run the build script: it will update all the
-pages automatically.
+To change the nav, footer, or right-panel markup site-wide, edit the corresponding file under `build/components/` (or `build/layout.html` for `<head>`/body structure) once, then re-run the build script: it will update all the pages automatically.
+
+## RSS feed
+
+`npm run build` also regenerates `rss.xml` at the project root, directly from `pages.json` and no separate step needed. Any page entry with a `feed` key is included as an item:
+
+```json
+{
+  "id": "my-new-post",
+  ...,
+  "feed": {
+    "date": "2026-01-01",
+    "tags": ["ctf", "writeup"],
+    "description": "One or two sentence summary shown in feed readers."
+  }
+}
+```
+
+Exclude the `feed` key from an item (tag pages, the 404 page, etc.) to keep it out of the feed. Feed-wide settings (title, description, and the site's base URL used to build absolute links) are located in `build/site.json`.

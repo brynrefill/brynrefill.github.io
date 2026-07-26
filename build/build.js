@@ -5,6 +5,7 @@
 "use strict";
 const fs = require("fs");
 const path = require("path");
+const { generateFeed } = require("./rss.js");
 
 // ROOT = the project root (one level up from this build/ folder)
 // where the generated pages are written
@@ -124,3 +125,6 @@ for (const page of pages) {
   fs.writeFileSync(outPath, html, "utf8");
   console.log(`built ${page.out}`);
 }
+
+// generate rss.xml from every page that carries "feed" metadata
+generateFeed(pages, site, ROOT);

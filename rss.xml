@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Bryn Refill&apos;s Blog</title>
+        <link>https://brynrefill.com/</link>
+        <description>In-depth and hype-free notes on cybersecurity and computer engineering, including CTF write-ups.</description>
+        <language>en-US</language>
+        <lastBuildDate>Sun, 26 Jul 2026 10:42:43 GMT</lastBuildDate>
+        <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://brynrefill.com/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title>RED - picoCTF challenge - Writeup | Bryn Refill&apos;s Blog</title>
+            <link>https://brynrefill.com/posts/red/</link>
+            <guid isPermaLink="true">https://brynrefill.com/posts/red/</guid>
+            <pubDate>Sun, 03 Aug 2025 00:00:00 GMT</pubDate>
+            <description>Writeup for RED, an easy forensics challenge from picoCTF 2025 involving LSB steganography in a PNG image.</description>
+            <category>ctf</category>
+            <category>writeup</category>
+            <category>forensics</category>
+        </item>
+        <item>
+            <title>PIE TIME - picoCTF challenge - Writeup | Bryn Refill&apos;s Blog</title>
+            <link>https://brynrefill.com/posts/pietime/</link>
+            <guid isPermaLink="true">https://brynrefill.com/posts/pietime/</guid>
+            <pubDate>Thu, 31 Jul 2025 00:00:00 GMT</pubDate>
+            <description>Writeup for PIE TIME, an easy pwn challenge from picoCTF 2025 involving a PIE-enabled binary.</description>
+            <category>ctf</category>
+            <category>writeup</category>
+            <category>pwn</category>
+        </item>
+        <item>
+            <title>Hello, World! | Bryn Refill&apos;s Blog</title>
+            <link>https://brynrefill.com/posts/helloworld/</link>
+            <guid isPermaLink="true">https://brynrefill.com/posts/helloworld/</guid>
+            <pubDate>Fri, 13 Jun 2025 00:00:00 GMT</pubDate>
+            <description>Kicking off this blog: what to expect here, mostly in-depth and hype-free notes on cybersecurity, computer engineering, and CTF write-ups.</description>
+            <category>talks</category>
+        </item>
+    </channel>
+</rss>
